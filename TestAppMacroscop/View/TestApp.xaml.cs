@@ -32,17 +32,17 @@ namespace TestAppMacroscop.View
             lvCams.SelectedIndex = 0;
         }
 
-        private VideoController cameraController;
+        private VideoController videoController;
 
         private void lvCams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cameraController != null)
-                cameraController.Stop();
+            if (videoController != null)
+                videoController.Stop();
             Camera selCam = lvCams.SelectedItem as Camera;
             string uri = "http://demo.macroscop.com:8080/mobile?login=root&channelid=" + selCam.Id + "&resolutionX=640&resolutionY=480&fps=25";
-            cameraController = new VideoController(uri);
-            cameraController.UpdateFrame += GetFrame;
-            cameraController.Start();
+            videoController = new VideoController(uri);
+            videoController.UpdateFrame += GetFrame;
+            videoController.Start();
         }
 
         public void GetFrame(object sender, VideoController.UpdateFrameEventArgs e)
@@ -75,7 +75,7 @@ namespace TestAppMacroscop.View
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            cameraController.Stop();
+            videoController.Stop();
         }
     }
 }
