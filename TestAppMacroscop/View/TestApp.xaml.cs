@@ -72,5 +72,10 @@ namespace TestAppMacroscop.View
                 }
             
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            cameraController.Stop();
+        }
     }
 }
